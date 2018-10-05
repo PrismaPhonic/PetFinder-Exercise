@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='container bg-info text-white p-3'>
+    <h1>ADD A PET</h1>
+    <form method="POST">
+
+        {{ form.hidden_tag() }}
+      
+        {% for field in form
+               if field.widget.input_type != 'hidden' %}
+        <p>
+            <div class='input-group'>
+                <div class="input-group-prepend">
+                    {{ field.label(class_='input-group-text') }}
+                </div>
+                {{ field }}
+            </div>
+            {% for error in field.errors %}
+            {{ error }}
+            {% endfor %}
+        </p>
+        {% endfor %}
+      
+        <button type="submit">Add Pet</button>
+      
+      </form>
+
+</div>
+
+{%  endblock  %}
